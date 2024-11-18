@@ -1,0 +1,5 @@
+.stars-ui-component {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+}

@@ -1,0 +1,50 @@
+.radiobutton-ui-component {
+    display: flex;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .radiobutton-ui-component-title {
+    margin-right: 15px;
+    font-weight: 500;
+    width: 40%;
+    height: 100%;
+  }  
+
+  .radiobutton-ui-component [type="radio"]{
+    display: none;
+  }
+
+  .radiobutton-ui-component-button {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    
+  }
+
+  .radiobutton-ui-component-lable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .radiobutton-ui-component-lable:hover {
+    background-color: #007bff;
+    color: #f4f4f4;
+  }
+
+  .radiobutton-ui-component input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: #ffffff;
+  }

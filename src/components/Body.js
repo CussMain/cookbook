@@ -1,32 +1,19 @@
 import React    from "react";
-import Header   from "./body/Header";
-import Main     from "./body/Main";
+import Header   from "./tree/Header/Header";
+import Main     from "./tree/Main/Main";
+import './Body.css';
 
-class Body extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-          urlAPI:       'https://dummyjson.com/recipes',
-          urlAPItags:   'https://dummyjson.com/recipes/tag'   
-        };
-    }
+const Body = () => {
 
-    render() {
-      return(
-        <div className="body">
-            <Header 
-                title="Сборник рецептов из разных стран мира"
-                urlAPI={this.state.urlAPI}
-                urlAPItags={this.state.urlAPItags}
-            />
-            <Main 
-                urlAPI={this.state.urlAPI}
-                urlAPItags={this.state.urlAPItags}
-            />
-        </div>
-      )
-    }
+  return (
+    <div className="body">
+      <Header 
+        title="Сборник рецептов из разных стран мира"
+      />
+      <Main 
+      />
+    </div>
+  );
 };
 
 export default Body;

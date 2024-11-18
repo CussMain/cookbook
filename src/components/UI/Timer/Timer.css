@@ -1,0 +1,17 @@
+.timer-ui-component{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  
+  .timer-ui-component img {
+    margin-right: 5px;
+  }
+
+  .timer-ui-component span {
+    margin-right: 5px;
+  }
+
+  .timer-ui-component [type="cookTimeMinutes"] {
+    margin-right: 5px;
+  }
