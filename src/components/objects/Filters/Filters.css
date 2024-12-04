@@ -1,0 +1,64 @@
+.filter-ui-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-ui-component-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+  }
+  
+  .filter-ui-component-top img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .filter-ui-component-top p {
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
+    margin-left: 60px;
+    margin-right: 60px;
+    line-height: 1.6;
+    padding-top: 10px;
+    width: 460px;
+  }
+  
+  .filter-ui-component-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 430px;
+    width: 480px; 
+    margin-top: 30px;
+  }
+
+  .filter-ui-component-clear-button{
+    align-items: left;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .filter-ui-component-clear-button button{
+    background-color: #f8fa8a;
+    width: 200px;
+  }
+
+  .filter-ui-component-random-button{
+    align-items: left;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+
+  .filter-ui-component-random-button button{
+    width: 200px;
+    background-color: #ffffff;
+    margin-top: 10px;
+  }
