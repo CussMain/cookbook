@@ -3,6 +3,7 @@
     border-radius: 8px;
     width: 100%;
     height: 400px;
+    cursor: pointer;
   }
   
   .recipecard-ui-component [type="title"]  {
@@ -45,7 +46,7 @@
   
   .recipecard-ui-component-info p{
     font-weight: 300;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .recipecard-ui-component-time {

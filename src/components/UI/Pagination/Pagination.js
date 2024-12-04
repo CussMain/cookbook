@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import "./Pagination.css";
 
 const Pagination = ({ recipes, getPageNum , itemsPerPage}) => {
@@ -18,6 +18,11 @@ const Pagination = ({ recipes, getPageNum , itemsPerPage}) => {
     }
     getPageNum(currentPage);
   }, [currentPage, recipes, getPageNum]);
+
+  // Возвращаем в начало, каждый раз, когда выбран новый рецепт(ы)
+  useEffect(() => {
+     setCurrentPage(1);
+  }, [recipes]);
 
   return (
     <div className="pagination-ui-component">

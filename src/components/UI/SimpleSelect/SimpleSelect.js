@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './SimpleSelect.css';
 
 const SimpleSelect = ({ 
@@ -6,7 +6,8 @@ const SimpleSelect = ({
   options, 
   defaultValue, 
   placeholder,
-  onChange
+  onChange,
+  resetSelect
 }) => {
   const [selectedOption, setSelectedOption] = useState(defaultValue || '');
 
@@ -15,6 +16,13 @@ const SimpleSelect = ({
     setSelectedOption(value);
     onChange(value);
   }, [onChange]);
+
+  useEffect(() => {
+    if (resetSelect) {
+      setSelectedOption(defaultValue || '');
+      onChange(defaultValue || '');
+    };
+  }, [resetSelect]);
 
   // Создаем массив с уникальными значениями
   const uniqueOptions = [...new Set(options.map(option => option.value))].sort();
