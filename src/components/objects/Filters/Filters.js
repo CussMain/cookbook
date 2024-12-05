@@ -8,9 +8,11 @@ import './Filters.css';
 import { appConfig }                                              from '../../config';
 
 function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear,  filterNum}) {
-  const [tags, setTags] = useState([]);
-  const [cuisines, setCuisines] = useState([]);
-  const [clickClearFlag , setClickClearFlag] = useState(false);
+  const [tags                    , setTags]               = useState([]);
+  const [cuisines                , setCuisines]           = useState([]);
+  const [clickClearFlag          , setClickClearFlag]     = useState(false);
+
+  let GetCuisines = null;
 
   // Функция для загрузки тегов
   const fetchTags = useCallback(async () => {
@@ -20,7 +22,13 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
         value: tag.toLowerCase(),
         label: tag
       }));
-      setTags(newTags);
+
+      // Фильтруем tags, исключая значения из cuisines
+      const filteredTags = newTags.filter(tag => {
+        return !GetCuisines.some(cuisine => cuisine.value === tag.value);
+      });
+
+      setTags(filteredTags);
     } catch (error) {
       console.error("Ошибка при загрузке тегов:", error);
     }
@@ -34,6 +42,7 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
         value: recipe.cuisine.toLowerCase(),
         label: recipe.cuisine
       }));
+      GetCuisines = newCuisines;
       setCuisines(prevCuisines => [...prevCuisines, ...newCuisines]);
     } catch (error) {
       console.error("Ошибка при загрузке тегов:", error);
@@ -42,8 +51,8 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
 
   // Для инициализации данныхW
   useEffect(() => {
-      fetchTags();
       fetchCuisines();
+      fetchTags();
   }, [fetchTags, fetchCuisines]);
 
   // Обработчик изменения тегов
@@ -107,15 +116,15 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
       <div className="filter-ui-component-footer">
         <SimpleSelect 
           title="Кухня:"
-          options={tags}
+          options={cuisines}
           defaultValue={null}
           onChange={handleChange}
-          placeholder="Выберите тег"
+          placeholder="Выберите кухню"
           resetSelect={clickClearFlag}
         />
         <SimpleSelect 
           title="Тип блюда:"
-          options={cuisines}
+          options={tags}
           defaultValue={null}
           onChange={handleChange}
           placeholder="Выберите тип"

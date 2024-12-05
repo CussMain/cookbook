@@ -18,7 +18,8 @@
     font-weight: 500;
     font-size: 16px;
     box-shadow: inset 0 0 0 1px #ccc;
-    background-color: #fFfFfF;
+    background-color: var(--background-color);
+    color: var(--text-color);
   }
   
   .pagination-ui-component button:hover {
@@ -26,5 +27,5 @@
   }
   
   .pagination-ui-component button:active {
-    background-color: #f4f4f4;
+    background-color: var(--border-color);
   }

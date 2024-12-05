@@ -12,7 +12,6 @@
     font-size: 20px;
     line-height: 28px;
     font-style: normal;
-    font-family: 'Roboto', sans-serif;
   }
   
   .library-ui-component-title-num {
@@ -20,7 +19,6 @@
     font-size: 16px;
     line-height: 28px;
     font-style: normal;
-    font-family: 'Roboto', sans-serif;
     margin-left: 10px;
   }
 
@@ -34,8 +32,17 @@
   .library-ui-component-recipe-group {
     height: 860px;
     width: 100%;
+    margin-left: 5px;
   }
   
+  .library-ui-component-recipe-group [type="library-ui-warning-text"] {
+    display: flex;
+    font-size: 14px;
+    font-weight: 300;
+    justify-content: center;
+    align-items: center;
+  }
+
   .library-ui-component-recipe-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

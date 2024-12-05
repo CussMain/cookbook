@@ -3,10 +3,29 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-body {  
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: 'Roboto', sans-serif;
+.body-light {  
+  --text-color: #333;
+  --background-color: #fff; 
+  --border-color: #F0F0F0; 
+  --background-random_button: #f8fa8a;
+  --stars-ui-component-img-star-url: './img/star.png';
+  --stars-ui-component-img-star-empty-url: './img/star_empty.png';
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.body-dark {
+  --text-color: #fff;
+  --background-color: #111; 
+  --border-color: #292727; 
+  --background-random_button: #580a0a;
+  --stars-ui-component-img-star-url: './img/star_dark.png';
+  --stars-ui-component-img-star-empty-url: './img/star_empty_dark.png';
+
+  background-color: var(--background-color);
+  color: var(--text-color);
 }

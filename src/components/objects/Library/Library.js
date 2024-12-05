@@ -24,6 +24,12 @@ const Library = ({
 
   // Загрузка рецептов
   const fetchRecipes = async (value) => {
+
+    // Логирование пакета:
+    console.log(value , selectedOption, difficultyOption, selectedRandom);
+    //           |            |               |                 |         
+    //          Тип          Тег             Сложность         Случайное число
+
     try {
       let urlGet = null;
       let filteredRecipes = null;
@@ -40,10 +46,10 @@ const Library = ({
 
           response = await axios.get(urlGet);
 
-          if (difficultyOption === 'All') {
-            filteredRecipes = response.data.recipes;
-          } else {
+          if (difficultyOption === 'Easy' || difficultyOption === 'Medium' || difficultyOption === 'Hard') {
             filteredRecipes = response.data.recipes.filter(recipe => recipe.difficulty === difficultyOption);
+          } else {
+            filteredRecipes = response.data.recipes;
           };
 
           break;
@@ -118,9 +124,9 @@ const Library = ({
       
       <div className="library-ui-component-recipe-group">
         {state.loading ? (
-          <p>Загрузка рецептов...</p>
+          <p type = "library-ui-warning-text">Загрузка рецептов 👀</p>
         ) : state.recipes.length === 0 ? (
-          <p>Рецепты не найдены.</p>
+          <p type = "library-ui-warning-text"> Рецепты не найдены 😥</p>
         ) : (
           <div className="library-ui-component-recipe-grid">
             {state.recipes.slice((state.currentPage - 1) * state.itemsPerPage, state.currentPage * state.itemsPerPage).map((recipe, index) => (
