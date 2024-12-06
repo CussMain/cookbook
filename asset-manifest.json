@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cookbook/static/css/main.110449b6.chunk.css",
+    "main.js": "/cookbook/static/js/main.10a17302.chunk.js",
+    "main.js.map": "/cookbook/static/js/main.10a17302.chunk.js.map",
+    "runtime-main.js": "/cookbook/static/js/runtime-main.18deefa4.js",
+    "runtime-main.js.map": "/cookbook/static/js/runtime-main.18deefa4.js.map",
+    "static/js/2.b376b0bf.chunk.js": "/cookbook/static/js/2.b376b0bf.chunk.js",
+    "static/js/2.b376b0bf.chunk.js.map": "/cookbook/static/js/2.b376b0bf.chunk.js.map",
+    "index.html": "/cookbook/index.html",
+    "precache-manifest.b011078878927abc95e88d716bb5c091.js": "/cookbook/precache-manifest.b011078878927abc95e88d716bb5c091.js",
+    "service-worker.js": "/cookbook/service-worker.js",
+    "static/css/main.110449b6.chunk.css.map": "/cookbook/static/css/main.110449b6.chunk.css.map",
+    "static/js/2.b376b0bf.chunk.js.LICENSE.txt": "/cookbook/static/js/2.b376b0bf.chunk.js.LICENSE.txt",
+    "static/media/cook.png": "/cookbook/static/media/cook.e2ab12b5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.18deefa4.js",
+    "static/js/2.b376b0bf.chunk.js",
+    "static/css/main.110449b6.chunk.css",
+    "static/js/main.10a17302.chunk.js"
+  ]
+}
