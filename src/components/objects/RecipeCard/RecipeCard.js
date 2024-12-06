@@ -1,29 +1,19 @@
-import React, { useCallback } from "react";
-import Stars                  from "../../UI/Stars/Stars";
-import Timer                  from "../../UI/Timer/Timer";
+import React from "react";
+import Stars from "../../UI/Stars/Stars";
+import Timer from "../../UI/Timer/Timer";
 import './RecipeCard.css';
 
 const RecipeCard = ({
-  id,
   image,
   name,
   instructions,
   cookTimeMinutes,
   difficulty,
   cuisine,
-  mealType,
-  onClick
+  mealType
 }) => {
-
-  const handClick = useCallback(() => {
-    onClick(id);//---> IDs
-  }, [onClick, id]);
-
   return (
-    <div 
-      className="recipecard-ui-component"
-      onClick={handClick}
-    >  
+    <div className="recipecard-ui-component">  
         <label type = "title">{name}</label>
         <div className="recipecard-ui-component-card">
             <div className="recipecard-ui-component-left">

@@ -3,10 +3,11 @@ import Library from "../../objects/Library/Library";
 import './Space.css';
 
 const Space = ({ 
-    selectedOption, 
-    difficultyOption, 
-    clearFlag, 
-    selectedRandom
+  selectedOption, 
+  difficultyOption, 
+  clearFlag, 
+  selectedRandom, 
+  switchCase 
   }) => {
 
   return (
@@ -16,6 +17,7 @@ const Space = ({
         difficultyOption={difficultyOption}
         clearFlag={clearFlag}
         selectedRandom={selectedRandom}
+        switchCase={switchCase}
       />
     </div>
   );

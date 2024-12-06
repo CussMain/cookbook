@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useCallback, useRef  }     from "react";
-import axios                                                    from "axios";
-import cook                                                     from './img/cook.png';
-import SimpleSelect                                             from '../../UI/SimpleSelect/SimpleSelect';
-import RadioButton                                              from '../../UI/RadioButton/RadioButton';
-import Button                                                   from '../../UI/Button/Button';
-import { appConfig }                                            from '../../config';
+import React, { useState, useEffect, useCallback}   from "react";
+import axios                                        from "axios";
+import cook                                         from './img/cook.png';
+import SimpleSelect                                 from '../../UI/SimpleSelect/SimpleSelect';
+import RadioButton                                  from '../../UI/RadioButton/RadioButton';
+import Button                                       from '../../UI/Button/Button';
 import './Filters.css';
+import { appConfig }                                from '../../config';
 
 function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear,  filterNum}) {
-  const [tags                    , setTags]                 = useState([]);
-  const [cuisines                , setCuisines]             = useState([]);
-  const [clickClearFlag          , setClickClearFlag]       = useState(false);
-
-  let GetCuisinesRef = useRef(null);
+  const [tags, setTags] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
 
   // Функция для загрузки тегов
   const fetchTags = useCallback(async () => {
@@ -22,13 +19,7 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
         value: tag.toLowerCase(),
         label: tag
       }));
-
-      // Фильтруем tags, исключая значения из cuisines
-      const filteredTags = newTags.filter(tag => {
-        return !GetCuisinesRef.current.some(cuisine => cuisine.value === tag.value);
-      });
-
-      setTags(filteredTags);
+      setTags(newTags);
     } catch (error) {
       console.error("Ошибка при загрузке тегов:", error);
     }
@@ -42,7 +33,6 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
         value: recipe.cuisine.toLowerCase(),
         label: recipe.cuisine
       }));
-      GetCuisinesRef.current = [...newCuisines];
       setCuisines(prevCuisines => [...prevCuisines, ...newCuisines]);
     } catch (error) {
       console.error("Ошибка при загрузке тегов:", error);
@@ -51,35 +41,31 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
 
   // Для инициализации данныхW
   useEffect(() => {
-      fetchCuisines();
       fetchTags();
+      fetchCuisines();
   }, [fetchTags, fetchCuisines]);
 
   // Обработчик изменения тегов
   const handleChange = (value) => {
-      onChange(value);
-      setClickClearFlag(false);
+    onChange(value);
   };
 
   // Обработчик изменения сложности
   const handleRadioButtonChange = (value) => {
-      onSelectedRadioButton(value);
-      setClickClearFlag(false);
+    onSelectedRadioButton(value);
   };
 
   // Обработчик случайного выбора
   const handleClickRandom = () => {
     const randomValue = Math.floor(Math.random() * filterNum) + 1;
     onClickRandom(randomValue);
-    setClickClearFlag(true);
   };
 
   // Обработчик сброса
-  const handleClickClear = (value) => {
-    onClickClear(value);
-    setClickClearFlag(true);
+  const handleClickClear = () => {
+    onClickClear(true);
   };
-  
+
   // Массив уровней сложности
   const level = [
     { value: 'All'    , label: 'Любая' },
@@ -92,47 +78,44 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
     <div className="filter-ui-component">
       {/* Верхняя часть */}
       <div className="filter-ui-component-top">
-        <img src={cook} alt="Cook" className="filter-ui-component-image"/>
-        <p type="text">В нашей жизни, когда время становится все более ценным ресурсом, задача планирования приема пищи становится все более сложной.</p>
-        <p type="text">Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или ужин? Каким образом мы можем легко и быстро определиться с выбором блюда и не тратить много времени на принятие этого решения?</p>
-        <p type="text">Наш сервис поможет: выбирайте параметры - и вперед!</p>
+        <img src={cook} alt="Cook" className="filter-ui-component-image" style={{width: '320px', height: '320px'}} />
+        <p>В нашей жизни, когда время становится все более ценным ресурсом, задача планирования приема пищи становится все более сложной.</p>
+        <p>Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или ужин? Каким образом мы можем легко и быстро определиться с выбором блюда и не тратить много времени на принятие этого решения?</p>
+        <p>Наш сервис поможет: выбирайте параметры - и вперед!</p>
       </div>
 
       {/* Нижняя часть */}
       <div className="filter-ui-component-footer">
         <SimpleSelect 
           title="Кухня:"
-          options={cuisines}
-          defaultValue={null}
-          onChange={handleChange}
-          placeholder="Выберите кухню"
-          resetSelect={clickClearFlag}
-        />
-        <SimpleSelect 
-          title="Тип блюда:"
           options={tags}
           defaultValue={null}
           onChange={handleChange}
+          placeholder="Выберите тег"
+        />
+        <SimpleSelect 
+          title="Тип блюда:"
+          options={cuisines}
+          defaultValue={null}
+          onChange={handleChange}
           placeholder="Выберите тип"
-          resetSelect={clickClearFlag}
         />
         <RadioButton 
           title="Сложность приготовления:"
           options={level} 
-          defaultValue={'All'} 
+          defaultValue={null} 
           onChange={handleRadioButtonChange}
-          resetButton={clickClearFlag}
         />
         <div className="filter-ui-component-clear-button">
           <Button
-              onClick={handleClickClear}
+            onClick={handleClickClear}
           >Сбросить все фильтры
           </Button>
         </div>
         <div className="filter-ui-component-random-button">
           <div className="filter-ui-component-random-button-title">А еще можно попробовать на вкус удачу:</div>
           <Button
-              onClick={handleClickRandom}
+            onClick={handleClickRandom}
           >Мне повезет!
           </Button>
         </div>              

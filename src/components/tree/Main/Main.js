@@ -3,40 +3,50 @@ import LeftPanel              from "../../containers/LeftPanel/LeftPanel";
 import Space                  from "../../containers/Space/Space";
 import './Main.css';
 
-const Main = () => {
+const Main = ({ 
+      onChange, 
+      onClick, 
+      onRadioButtonChange,
+      onClickRandom 
+  }) => {
 
   const [state, setState] = useState({
     selectedOption: null,
     difficultyOption: null,
     clearFlag: null,
-    selectedRandom: null
+    selectedRandom: null,
+    switchCase: 0
   });
 
   const handleChange = (value) => {
     setState(prevState => ({
       ...prevState,
-      selectedOption: value
+      selectedOption: value,
+      switchCase: 1
     }));
   };
 
   const handleRadioButtonChange = (value) => {
     setState(prevState => ({
       ...prevState,
-      difficultyOption: value
+      difficultyOption: value,
+      switchCase: 2
     }));
   };
 
   const handleClick = (value) => {
     setState(prevState => ({
       ...prevState,
-      clearFlag: value
+      clearFlag: value,
+      switchCase: 3
     }));
   };
 
   const handleClickRandom = (value) => {
     setState(prevState => ({
       ...prevState,
-      selectedRandom: value
+      selectedRandom: value,
+      switchCase: 4
     }));
   };
 
@@ -53,6 +63,7 @@ const Main = () => {
         difficultyOption={state.difficultyOption}
         clearFlag={state.clearFlag}
         selectedRandom={state.selectedRandom}
+        switchCase={state.switchCase}
       />
     </main>
   );

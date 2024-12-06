@@ -1,24 +1,17 @@
-import React, { useState , useEffect } from 'react';
+import React from 'react';
 import './RadioButton.css';
 
-const RadioButton = ({ title, options, defaultValue, onChange , resetButton}) => {
-  const [selectedOption, setSelectedOption] = useState(defaultValue);
+const RadioButton = ({ title, options, defaultValue, onChange }) => {
+  const [selectedOption, setSelectedOption] = React.useState(defaultValue);
 
   const handleChange = (value) => {
     setSelectedOption(value);
     onChange(value);
   };
 
-  useEffect(() => {
-    if (resetButton) {
-      setSelectedOption(defaultValue);
-      onChange(defaultValue);
-    };
-  }, [resetButton , defaultValue , onChange]);
-
   return (
     <div className="radiobutton-ui-component">
-      <label  type='title' htmlFor={title}>{title}</label>
+      <label  className="radiobutton-ui-component-title" htmlFor={title}>{title}</label>
       {options.map((option) => (
         <div key={option.value} className="radiobutton-ui-component-button" >
           <input
