@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState  } from 'react';
-import ModalContent                                from '../../objects/ModalContent/ModalContent';
+import ModalContent                                from '../../containers/ModalContent/ModalContent';
 import { Context }                                 from '../../Context';
 import './Modal.css';
 
@@ -12,7 +12,7 @@ const Content = ({ isOpen, onClose, children }) => {
         <div className="modal-overlay-contener-heder">
           <button  className="modal-overlay-contener-button"  onClick={onClose}>&times;</button>
         </div>
-        <div className="modal-content">
+        <div className="modal-children">
           {children}
         </div>
       </div>
@@ -21,7 +21,7 @@ const Content = ({ isOpen, onClose, children }) => {
 };
 
 const Modal = () => {
-  const { name , setName } = useContext(Context);
+  const { name } = useContext(Context);
   const [ isModalOpen, setIsModalOpen] = useState(false);
   const [ cardNumber , setCardNumber ] = useState(0);
 
@@ -31,7 +31,6 @@ const Modal = () => {
     if (name ?? 0) {
       setCardNumber(name);
       setIsModalOpen(true);
-      setName(0);
     }
   }, [name]);
 

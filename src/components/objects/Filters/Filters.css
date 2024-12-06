@@ -3,6 +3,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: 15px;
+    margin-right: 5px;
+    width: 400px;
   }
   
   .filter-ui-component-top {
@@ -12,31 +15,29 @@
     width: 100%; 
   }
   
-  .filter-ui-component-top img {
-    width: 320px;
-    height: 320px;
+  .filter-ui-component-image {
+    height: 220px;
     object-fit: cover;
     margin-bottom: 20px;
   }
   
-  .filter-ui-component-top p {
+ 
+
+  .filter-ui-component-top [type="text"] {
     font-weight: 400;
     font-size: 16px;
     text-align: left;
-    margin-left: 60px;
-    margin-right: 60px;
-    line-height: 1.6;
+    margin-left: 10px;
     padding-top: 10px;
-    width: 460px;
-  }
+  } 
   
   .filter-ui-component-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 430px;
-    width: 480px; 
+    /* height: 430px; */
+    /* width: 480px;  */
     margin-top: 30px;
   }
 
@@ -44,6 +45,7 @@
     align-items: left;
     width: 100%;
     margin-top: 10px;
+    
   }
   .filter-ui-component-clear-button button{
     background-color: var(--background-random_button);

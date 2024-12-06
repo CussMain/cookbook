@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext }   from "react";
-import axios                                        from "axios";
-import RecipeCard                                   from "../RecipeCard/RecipeCard"; 
-import Pagination                                   from "../../UI/Pagination/Pagination";
-import { appConfig }                                from '../../config';
-import { Context }                                  from "../../Context";
+import React, { useState, useEffect, useContext, useCallback }   from "react";
+import axios                                                     from "axios";
+import RecipeCard                                                from "../RecipeCard/RecipeCard"; 
+import Pagination                                                from "../../UI/Pagination/Pagination";
+import { appConfig }                                             from '../../config';
+import { Context }                                               from "../../Context";
 import './Library.css';
 
 const Library = ({ 
@@ -23,12 +23,12 @@ const Library = ({
   });
 
   // Загрузка рецептов
-  const fetchRecipes = async (value) => {
+  const fetchRecipes = useCallback(async(value) => {
 
-    // Логирование пакета:
-    console.log(value , selectedOption, difficultyOption, selectedRandom);
-    //           |            |               |                 |         
-    //          Тип          Тег             Сложность         Случайное число
+// Структура пакета:
+//  console.log(value , selectedOption, difficultyOption, selectedRandom);
+//                |            |               |                 |         
+//                Тип (номер)  Тег (фильтр)    Сложность         Случайное число
 
     try {
       let urlGet = null;
@@ -85,7 +85,7 @@ const Library = ({
         loading: false
       }));
     }
-  };
+  }, [difficultyOption, selectedOption, selectedRandom]);
 
   // Обработка возврата от пагинации
   const handlePageNum = (value) => {
@@ -103,17 +103,23 @@ const Library = ({
   // Выбран рецепт
   useEffect(() => {
      fetchRecipes(1);
-  }, [selectedOption , difficultyOption]);
+     // eslint-disable-next-line
+  }, [selectedOption , difficultyOption]); 
+  
 
   // Выбран случайный рецепт
   useEffect(() => {
     fetchRecipes(2);
-}, [selectedRandom]);
+    // eslint-disable-next-line
+  }, [selectedRandom]); 
+  
 
- // Сброс рецептов
+  // Сброс рецептов
   useEffect(() => {
     fetchRecipes(3);
-}, [clearFlag]);
+    // eslint-disable-next-line
+  }, [clearFlag]); 
+  
 
   return (
     <div className="library-ui-component">
@@ -124,9 +130,19 @@ const Library = ({
       
       <div className="library-ui-component-recipe-group">
         {state.loading ? (
-          <p type = "library-ui-warning-text">Загрузка рецептов 👀</p>
+          <p type="library-ui-warning-text">
+            Загрузка рецептов
+            <span role="img" aria-label="jsx-a11y/accessible-emoji">
+              👀
+            </span>
+          </p>
         ) : state.recipes.length === 0 ? (
-          <p type = "library-ui-warning-text"> Рецепты не найдены 😥</p>
+          <p type="library-ui-warning-text">
+            Рецепты не найдены
+            <span role="img" aria-label="jsx-a11y/accessible-emoji">
+              😥
+            </span>
+          </p>
         ) : (
           <div className="library-ui-component-recipe-grid">
             {state.recipes.slice((state.currentPage - 1) * state.itemsPerPage, state.currentPage * state.itemsPerPage).map((recipe, index) => (

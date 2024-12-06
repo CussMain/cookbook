@@ -1,11 +1,14 @@
-
+.library-ui-component {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .library-ui-component-title {
     margin-bottom: 20px;
     display: flex;
     margin-left: 10px;
     margin-top: 10px;
-  
   }
   .library-ui-component-title-text {
     font-weight: 400;
@@ -30,8 +33,8 @@
   }
   
   .library-ui-component-recipe-group {
-    height: 860px;
-    width: 100%;
+    height: 100%; 
+    /* width: 100%; */
     margin-left: 5px;
   }
   

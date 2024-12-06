@@ -18,6 +18,7 @@
   background-color: var(--border-color);
   padding: 10px;
   border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 .modal-overlay-contener-heder{
@@ -34,13 +35,15 @@
   cursor: pointer;
   transition: color 0.3s ease;
   color: var(--text-color);
+  margin-right: 10px;
 }
 
 .modal-overlay-contener-button:hover {
   color: #007bff;
 }
 
-.modal-content {
-  height: 100%;
+.modal-children {
+  display: flex;
+  height: 90%;
   width: 100%;
 }

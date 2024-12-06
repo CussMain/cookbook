@@ -11,11 +11,14 @@
   --background-color: #fff; 
   --border-color: #F0F0F0; 
   --background-random_button: #f8fa8a;
-  --stars-ui-component-img-star-url: './img/star.png';
-  --stars-ui-component-img-star-empty-url: './img/star_empty.png';
 
   background-color: var(--background-color);
   color: var(--text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .body-dark {
@@ -23,9 +26,12 @@
   --background-color: #111; 
   --border-color: #292727; 
   --background-random_button: #580a0a;
-  --stars-ui-component-img-star-url: './img/star_dark.png';
-  --stars-ui-component-img-star-empty-url: './img/star_empty_dark.png';
 
   background-color: var(--background-color);
   color: var(--text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

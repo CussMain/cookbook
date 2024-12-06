@@ -14,11 +14,11 @@ const RadioButton = ({ title, options, defaultValue, onChange , resetButton}) =>
       setSelectedOption(defaultValue);
       onChange(defaultValue);
     };
-  }, [resetButton]);
+  }, [resetButton , defaultValue , onChange]);
 
   return (
     <div className="radiobutton-ui-component">
-      <label  className="radiobutton-ui-component-title" htmlFor={title}>{title}</label>
+      <label  type='title' htmlFor={title}>{title}</label>
       {options.map((option) => (
         <div key={option.value} className="radiobutton-ui-component-button" >
           <input

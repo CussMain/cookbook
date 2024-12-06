@@ -17,7 +17,7 @@ const RecipeCard = ({
 
   const handClick = useCallback(() => {
     onClick(id);//---> IDs
-  }, [onClick]);
+  }, [onClick, id]);
 
   return (
     <div 

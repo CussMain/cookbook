@@ -1,27 +1,28 @@
 import React, { useState , useEffect }    from "react";
 import Header                             from "./tree/Header/Header";
 import Main                               from "./tree/Main/Main";
-import Modal                              from "./containers/Modal/Modal";
+import Modal                              from "./tree/Modal/Modal";
 import { Context }                        from "./Context";
+import { appConfig }                      from './config';
 import './Body.css';
 
 const Body = () => {
 
-  const [name , setName]            = useState();
-  const [userTheme , setUserTheme]  = useState();
+  const [name       , setName]       = useState();
+  const [userTheme  , setUserTheme]  = useState();
 
   useEffect(() => {
 
-    let userThemeLocal = window.localStorage.getItem('usertheme');
+    let userThemeLocal = window.localStorage.getItem(appConfig.localStorageID);
 
     if (userTheme?.length ?? 0) {
-      window.localStorage.setItem('usertheme', userTheme);
+      window.localStorage.setItem(appConfig.localStorageID, userTheme);
     } else {
       if (userThemeLocal?.length ?? 0) {
         setUserTheme(userThemeLocal);
       } else {
         setUserTheme('light');
-        window.localStorage.setItem('usertheme', userTheme);
+        window.localStorage.setItem(appConfig.localStorageID, userTheme);
       };
     };
 

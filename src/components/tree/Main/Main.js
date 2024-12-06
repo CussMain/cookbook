@@ -1,6 +1,6 @@
-import React, { useState , useEffect }    from "react";
-import LeftPanel                          from "../../containers/LeftPanel/LeftPanel";
-import Space                              from "../../containers/Space/Space";
+import React, { useState }    from "react";
+import LeftPanel              from "../../containers/LeftPanel/LeftPanel";
+import Space                  from "../../containers/Space/Space";
 import './Main.css';
 
 const Main = () => {

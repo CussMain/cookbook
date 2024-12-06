@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useCallback }   from "react";
-import axios                                                      from "axios";
-import cook                                                       from './img/cook.png';
-import SimpleSelect                                               from '../../UI/SimpleSelect/SimpleSelect';
-import RadioButton                                                from '../../UI/RadioButton/RadioButton';
-import Button                                                     from '../../UI/Button/Button';
+import React, { useState, useEffect, useCallback, useRef  }     from "react";
+import axios                                                    from "axios";
+import cook                                                     from './img/cook.png';
+import SimpleSelect                                             from '../../UI/SimpleSelect/SimpleSelect';
+import RadioButton                                              from '../../UI/RadioButton/RadioButton';
+import Button                                                   from '../../UI/Button/Button';
+import { appConfig }                                            from '../../config';
 import './Filters.css';
-import { appConfig }                                              from '../../config';
 
 function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear,  filterNum}) {
   const [tags                    , setTags]               = useState([]);
   const [cuisines                , setCuisines]           = useState([]);
   const [clickClearFlag          , setClickClearFlag]     = useState(false);
 
-  let GetCuisines = null;
+  let GetCuisinesRef = useRef(null);
 
   // Функция для загрузки тегов
   const fetchTags = useCallback(async () => {
@@ -25,7 +25,7 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
 
       // Фильтруем tags, исключая значения из cuisines
       const filteredTags = newTags.filter(tag => {
-        return !GetCuisines.some(cuisine => cuisine.value === tag.value);
+        return !GetCuisinesRef.current.some(cuisine => cuisine.value === tag.value);
       });
 
       setTags(filteredTags);
@@ -42,7 +42,7 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
         value: recipe.cuisine.toLowerCase(),
         label: recipe.cuisine
       }));
-      GetCuisines = newCuisines;
+      GetCuisinesRef.current = [...newCuisines];
       setCuisines(prevCuisines => [...prevCuisines, ...newCuisines]);
     } catch (error) {
       console.error("Ошибка при загрузке тегов:", error);
@@ -57,41 +57,27 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
 
   // Обработчик изменения тегов
   const handleChange = (value) => {
-    if (clickClearFlag) {
-      setClickClearFlag(false);
-    } else {
-      onChange(value);
-    };
+    setClickClearFlag(false);
+    onChange(value);
   };
 
   // Обработчик изменения сложности
   const handleRadioButtonChange = (value) => {
-    if (clickClearFlag) {
-      setClickClearFlag(false);
-    } else {
-      onSelectedRadioButton(value);
-    };
+    setClickClearFlag(false);
+    onSelectedRadioButton(value);
   };
 
   // Обработчик случайного выбора
   const handleClickRandom = () => {
     const randomValue = Math.floor(Math.random() * filterNum) + 1;
     onClickRandom(randomValue);
-    if (clickClearFlag) {
-      setClickClearFlag(false);
-    } else {
-      setClickClearFlag(true);
-    }; 
+    setClickClearFlag(true);
   };
 
   // Обработчик сброса
   const handleClickClear = (value) => {
     onClickClear(value);
-    if (clickClearFlag) {
-      setClickClearFlag(false);
-    } else {
-      setClickClearFlag(true);
-    }; 
+    setClickClearFlag(true);
   };
   
   // Массив уровней сложности
@@ -106,10 +92,10 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
     <div className="filter-ui-component">
       {/* Верхняя часть */}
       <div className="filter-ui-component-top">
-        <img src={cook} alt="Cook" className="filter-ui-component-image" style={{width: '320px', height: '320px'}} />
-        <p>В нашей жизни, когда время становится все более ценным ресурсом, задача планирования приема пищи становится все более сложной.</p>
-        <p>Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или ужин? Каким образом мы можем легко и быстро определиться с выбором блюда и не тратить много времени на принятие этого решения?</p>
-        <p>Наш сервис поможет: выбирайте параметры - и вперед!</p>
+        <img src={cook} alt="Cook" className="filter-ui-component-image"/>
+        <p type="text">В нашей жизни, когда время становится все более ценным ресурсом, задача планирования приема пищи становится все более сложной.</p>
+        <p type="text">Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или ужин? Каким образом мы можем легко и быстро определиться с выбором блюда и не тратить много времени на принятие этого решения?</p>
+        <p type="text">Наш сервис поможет: выбирайте параметры - и вперед!</p>
       </div>
 
       {/* Нижняя часть */}

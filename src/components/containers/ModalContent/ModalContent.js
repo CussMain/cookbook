@@ -1,7 +1,7 @@
-import React , { useState, useEffect }     from "react";
-import axios                               from "axios";
-import { appConfig }                       from "../../config";
-import RecipeCard                          from "../RecipeCard/RecipeCard";
+import React , { useState, useEffect, useCallback }     from "react";
+import axios                                            from "axios";
+import { appConfig }                                    from "../../config";
+import RecipeModal                                      from "../../objects/RecipeModal/RecipeModal";
 import './ModalContent.css';
 
 const ModalContent = ({ cardNumber }) => {
@@ -11,7 +11,7 @@ const ModalContent = ({ cardNumber }) => {
         loading: true
       });
 
-    const fetchRecipes = async (value) => {
+    const fetchRecipes = useCallback(async () => {
         try {
           let urlGet = null;
           let filteredRecipes = null;
@@ -20,6 +20,8 @@ const ModalContent = ({ cardNumber }) => {
           urlGet = `${appConfig.apiEndpoint}?limit=0`;
           response = await axios.get(urlGet);
           filteredRecipes = response.data.recipes.filter(recipe => recipe.id === cardNumber);
+
+          console.log(filteredRecipes);
 
           setState(prevState => ({
             ...prevState,
@@ -34,22 +36,17 @@ const ModalContent = ({ cardNumber }) => {
             loading: false
           }));
         }
-    };
+    }, [cardNumber]);
 
     useEffect(() => {
         fetchRecipes();
-    }, [cardNumber]);
-
-      // Обработка нажатия на карточку
-    const handleClick = (value) => {
-        
-    };
+    }, [cardNumber, fetchRecipes]);
 
     return (
-      <div>
+      <div className="modal-content">
             {state.recipes.map((recipe, index) => (
-            <RecipeCard key={index} {...recipe} 
-                onClick={handleClick}
+            <RecipeModal key={index} {...recipe} 
+                // onClick={handleClick}
             />
             ))}
       </div>

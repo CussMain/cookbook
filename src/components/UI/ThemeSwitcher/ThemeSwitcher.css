@@ -3,3 +3,7 @@
   align-items: center;
   gap: 10px;
 }
+
+.themeswitcher-ui-component [type='checkbox'] {
+  cursor: pointer;
+}

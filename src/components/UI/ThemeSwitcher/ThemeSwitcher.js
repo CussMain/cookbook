@@ -1,7 +1,7 @@
 import React from 'react';
 import './ThemeSwitcher.css';
 
-const CheckboxComponent = ({ text, onChange,  checked}) => {
+const CheckboxComponent = ({ text, onChange, checked}) => {
 
   const handleChange = (value) => {
     onChange(value.target.checked);

@@ -22,7 +22,7 @@ const SimpleSelect = ({
       setSelectedOption(defaultValue || '');
       onChange(defaultValue || '');
     };
-  }, [resetSelect]);
+  }, [resetSelect, defaultValue, onChange]);
 
   // Создаем массив с уникальными значениями
   const uniqueOptions = [...new Set(options.map(option => option.value))].sort();

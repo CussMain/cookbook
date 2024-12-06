@@ -17,7 +17,7 @@ const Pagination = ({ recipes, getPageNum , itemsPerPage}) => {
       setCurrentPage(prevState => prevState + 1);
     }
     getPageNum(currentPage);
-  }, [currentPage, recipes, getPageNum]);
+  }, [currentPage, recipes, getPageNum, itemsPerPage]);
 
   // Возвращаем в начало, каждый раз, когда выбран новый рецепт(ы)
   useEffect(() => {
