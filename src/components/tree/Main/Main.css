@@ -1,6 +1,5 @@
 .main {
     display: flex;
-    background-color: #ffffff;
-    border-top: 10px solid #F0F0F0;
+    border-top: 10px solid var(--border-color);
     border-radius: 5px;
   }

@@ -1,25 +1,53 @@
+.library-ui-component {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-
-.library-title {
+.library-ui-component-title {
     margin-bottom: 20px;
     display: flex;
     margin-left: 10px;
     margin-top: 10px;
-  
   }
-  .library-title-text {
+  .library-ui-component-title-text {
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
     font-style: normal;
-    font-family: 'Roboto', sans-serif;
   }
   
-  .library-title-num {
+  .library-ui-component-title-num {
     font-weight: 300;
     font-size: 16px;
     line-height: 28px;
     font-style: normal;
-    font-family: 'Roboto', sans-serif;
     margin-left: 10px;
+  }
+
+  .library-ui-component-recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 5px;
+  }
+  
+  .library-ui-component-recipe-group {
+    height: 100%; 
+    margin-left: 5px;
+  }
+  
+  .library-ui-component-recipe-group [type="library-ui-warning-text"] {
+    display: flex;
+    font-size: 14px;
+    font-weight: 300;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .library-ui-component-recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 5px;
   }

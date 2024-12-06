@@ -1,8 +1,7 @@
   .recipecard-ui-component{
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: 100%;
-    height: 400px;
+    cursor: pointer;
   }
   
   .recipecard-ui-component [type="title"]  {
@@ -12,7 +11,6 @@
     margin-top: 10px;
     font-size: 18px;
     font-weight: 700;
-    width: 100%;
   }
   
   .recipecard-ui-component-card {
@@ -39,24 +37,21 @@
     margin-left: 20px;
     margin-top: 10px;
     margin-right: 20px;
-    height: 100%;
-    width: 100%;
+    height: 30vh;
   }
   
   .recipecard-ui-component-info p{
     font-weight: 300;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .recipecard-ui-component-time {
     margin-top: 10px;
   }
 
-
   .recipecard-ui-component-difficulty {
     margin-top: 10px;
   }
-
     
   .recipecard-ui-component-cuisine {
     margin-top: 3px;
