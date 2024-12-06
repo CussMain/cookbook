@@ -1,5 +1,4 @@
 export const appConfig = {
-    title:              'appConfig',
-    apiEndpoint:        'https://dummyjson.com/recipes',
-    localStorageID:     'usertheme'
+    title: 'api_url',
+    apiEndpoint: 'https://dummyjson.com/recipes'
 };

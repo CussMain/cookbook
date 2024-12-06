@@ -1,19 +1,5 @@
- .header {
-    display: flex;
+.header {
+    background-color: #FFFFFF;
     padding: 25px 100px 25px 25px;
     border-radius: 5px;
-  }
-
-  .header-theme-title{
-    display: flex;
-    justify-content: left;
-    align-items: top;
-    width: 100%;
-  }
-
-  .header-theme-switcher{
-    display: flex;
-    justify-content: right;
-    align-items: top;
-    width: 100%;
   }

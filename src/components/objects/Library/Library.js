@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useContext, useCallback }   from "react";
-import axios                                                     from "axios";
-import RecipeCard                                                from "../RecipeCard/RecipeCard"; 
-import Pagination                                                from "../../UI/Pagination/Pagination";
-import { appConfig }                                             from '../../config';
-import { Context }                                               from "../../Context";
+import React, { useState, useEffect }   from "react";
+import axios                            from "axios";
+import RecipeCard                       from "../RecipeCard/RecipeCard"; 
+import Pagination                       from "../../UI/Pagination/Pagination";
 import './Library.css';
+import { appConfig }                    from '../../config';
 
 const Library = ({ 
-    selectedOption,
-    difficultyOption,
-    clearFlag,
-    selectedRandom
+  switchCase,
+  selectedOption,
+  difficultyOption,
+  clearFlag,
+  selectedRandom
   }) => {
   
-  const { setName } = useContext(Context);
 
   const [state, setState] = useState({
     recipes: [],
@@ -22,62 +21,38 @@ const Library = ({
     itemsPerPage: 6
   });
 
-  // Загрузка рецептов
-  const fetchRecipes = useCallback(async(value) => {
+  useEffect(() => {
+    fetchRecipes();
+  }, [switchCase]);
 
-// Структура пакета:
-  console.log(value , selectedOption, difficultyOption, selectedRandom);
-//                |            |               |                 |         
-//                Тип (номер)  Тег (фильтр)    Сложность         Случайное число
-
+  const fetchRecipes = async () => {
     try {
       let urlGet = null;
       let filteredRecipes = null;
-      let response = null;
 
-      // Логика отображения карточек рецептов:
-      switch(value) {
-        case 1: // Выбран фильтр и/или сложность
-          if (selectedOption?.length ?? 0) {
-            urlGet = `${appConfig.apiEndpoint}/tag/${selectedOption}?limit=0`;
-          } else {
-            urlGet = `${appConfig.apiEndpoint}?limit=0`;
-          };
+      if (switchCase === 3) {
+        urlGet = `${appConfig.apiEndpoint}?limit=0`;
+      } else if (switchCase === 1) {
+        urlGet = `${appConfig.apiEndpoint}/tag/${selectedOption}?limit=0`;
+      } else {
+        urlGet = `${appConfig.apiEndpoint}?limit=0`;
+      };
 
-          response = await axios.get(urlGet);
+      const response = await axios.get(urlGet);
 
-          if (difficultyOption === 'Easy' || difficultyOption === 'Medium' || difficultyOption === 'Hard') {
-            filteredRecipes = response.data.recipes.filter(recipe => recipe.difficulty === difficultyOption);
-          } else {
-            filteredRecipes = response.data.recipes;
-          };
-
-          break;
-        case 2: // Случайный рецепт
-
-          urlGet = `${appConfig.apiEndpoint}?limit=0`;
-          response = await axios.get(urlGet);
-          filteredRecipes = response.data.recipes.filter(recipe => recipe.id === selectedRandom);
-
-          break;
-        case 3: // Сброс
-          urlGet = `${appConfig.apiEndpoint}?limit=0`;
-          response = await axios.get(urlGet);
-          filteredRecipes = response.data.recipes;
-          break;
-        default:
-          urlGet = `${appConfig.apiEndpoint}?limit=0`;
-          response = await axios.get(urlGet);
-          filteredRecipes = response.data.recipes;         
+      if (switchCase === 4) {
+        filteredRecipes = response.data.recipes.filter(recipe => recipe.id === selectedRandom);
+      } else if ((difficultyOption === 'Easy' || difficultyOption === 'Medium')) {
+        filteredRecipes = response.data.recipes.filter(recipe => recipe.difficulty === difficultyOption);
+      } else {
+        filteredRecipes = response.data.recipes;
       }
 
       setState(prevState => ({
         ...prevState,
         recipes: filteredRecipes,
-        currentPage: 1,
         loading: false
       }));
-
     } catch (error) {
       console.error("Ошибка при загрузке рецептов:", error);
       setState(prevState => ({
@@ -85,70 +60,42 @@ const Library = ({
         loading: false
       }));
     }
-  }, [difficultyOption, selectedOption, selectedRandom]);
+  };
 
-  // Обработка возврата от пагинации
-  const handlePageNum = (value) => {
+  const handlePageNum = (pageNum) => {
     setState(prevState => ({
       ...prevState,
-      currentPage: value
+      currentPage: pageNum
     }));
   };
 
-  // Обработка нажатия на карточку
-  const handleClick = (value) => {
-      setName(value); //-->Context
-  }
-
-  // Выбран рецепт
   useEffect(() => {
-     fetchRecipes(1);
-     // eslint-disable-next-line
-  }, [selectedOption , difficultyOption]); 
-  
+    if(switchCase !== state.switchCase) {
+      setState(prevState => ({
+        ...prevState,
+        switchCase: switchCase
+      }));
 
-  // Выбран случайный рецепт
-  useEffect(() => {
-    fetchRecipes(2);
-    // eslint-disable-next-line
-  }, [selectedRandom]); 
-  
-
-  // Сброс рецептов
-  useEffect(() => {
-    fetchRecipes(3);
-    // eslint-disable-next-line
-  }, [clearFlag]); 
-  
+      fetchRecipes();
+    }
+  }, [switchCase, selectedOption, difficultyOption, clearFlag, selectedRandom]);
 
   return (
-    <div className="library-ui-component">
-      <div className="library-ui-component-title">
-        <div className="library-ui-component-title-text">Найденные рецепты</div>
-        <div className="library-ui-component-title-num">{state.recipes.length}</div>
+    <div className="library">
+      <div className="library-title">
+        <div className="library-title-text">Найденные рецепты</div>
+        <div className="library-title-num">{state.recipes.length}</div>
       </div>
       
-      <div className="library-ui-component-recipe-group">
+      <div className="recipe-group">
         {state.loading ? (
-          <p type="library-ui-warning-text">
-            Загрузка рецептов
-            <span role="img" aria-label="jsx-a11y/accessible-emoji">
-              👀
-            </span>
-          </p>
+          <p>Загрузка рецептов...</p>
         ) : state.recipes.length === 0 ? (
-          <p type="library-ui-warning-text">
-            Рецепты не найдены
-            <span role="img" aria-label="jsx-a11y/accessible-emoji">
-              😥
-            </span>
-          </p>
+          <p>Рецепты не найдены.</p>
         ) : (
-          <div className="library-ui-component-recipe-grid">
+          <div className="recipe-grid">
             {state.recipes.slice((state.currentPage - 1) * state.itemsPerPage, state.currentPage * state.itemsPerPage).map((recipe, index) => (
-              <RecipeCard key={index} {...recipe} 
-                onClick={handleClick}
-              />
+              <RecipeCard key={index} {...recipe} />
             ))}
           </div>
         )}

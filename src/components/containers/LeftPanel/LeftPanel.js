@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Filters from "../../objects/Filters/Filters";
 import './LeftPanel.css';
 
 const LeftPanel = ({ 
-    onChange, 
-    onRadioButtonChange, 
-    onClick, 
-    onClickRandom,
-    filterNum = 50 
+  onChange, 
+  onRadioButtonChange, 
+  onClick, 
+  onClickRandom,
+  filterNum = 50 
 }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleChange = (value) => {
+    setSelectedOption(value);
     onChange(value);
   };
 
@@ -18,12 +20,12 @@ const LeftPanel = ({
     onRadioButtonChange(value);
   };
 
-  const handleClickClear = (value) => {
-    onClick(value);
+  const handleClickClear = () => {
+    onClick();
   };
 
-  const handleClickRandom = (value) => {
-    onClickRandom(value);
+  const handleClickRandom = () => {
+    onClickRandom();
   };
 
   return (
