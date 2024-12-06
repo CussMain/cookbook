@@ -26,7 +26,7 @@ const Library = ({
   const fetchRecipes = useCallback(async(value) => {
 
 // Структура пакета:
-//  console.log(value , selectedOption, difficultyOption, selectedRandom);
+  console.log(value , selectedOption, difficultyOption, selectedRandom);
 //                |            |               |                 |         
 //                Тип (номер)  Тег (фильтр)    Сложность         Случайное число
 

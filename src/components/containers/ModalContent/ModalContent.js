@@ -21,8 +21,6 @@ const ModalContent = ({ cardNumber }) => {
           response = await axios.get(urlGet);
           filteredRecipes = response.data.recipes.filter(recipe => recipe.id === cardNumber);
 
-          console.log(filteredRecipes);
-
           setState(prevState => ({
             ...prevState,
             recipes: filteredRecipes,

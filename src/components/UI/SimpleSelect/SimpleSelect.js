@@ -9,19 +9,19 @@ const SimpleSelect = ({
   onChange,
   resetSelect
 }) => {
-  const [selectedOption, setSelectedOption] = useState(defaultValue || '');
+  const [selectedOption, setSelectedOption] = useState(defaultValue || null);
 
   const handleChange = useCallback((e) => {
     const value = e.target.value;
-    setSelectedOption(value);
-    onChange(value);
+      setSelectedOption(value);
+      onChange(value);
   }, [onChange]);
 
   useEffect(() => {
-    if (resetSelect) {
-      setSelectedOption(defaultValue || '');
-      onChange(defaultValue || '');
-    };
+      if (resetSelect) {
+        setSelectedOption(defaultValue || null);
+        onChange(defaultValue || null);
+      }
   }, [resetSelect, defaultValue, onChange]);
 
   // Создаем массив с уникальными значениями

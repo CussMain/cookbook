@@ -8,9 +8,9 @@ import { appConfig }                                            from '../../conf
 import './Filters.css';
 
 function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear,  filterNum}) {
-  const [tags                    , setTags]               = useState([]);
-  const [cuisines                , setCuisines]           = useState([]);
-  const [clickClearFlag          , setClickClearFlag]     = useState(false);
+  const [tags                    , setTags]                 = useState([]);
+  const [cuisines                , setCuisines]             = useState([]);
+  const [clickClearFlag          , setClickClearFlag]       = useState(false);
 
   let GetCuisinesRef = useRef(null);
 
@@ -57,14 +57,14 @@ function Filters({ onChange , onSelectedRadioButton, onClickRandom, onClickClear
 
   // Обработчик изменения тегов
   const handleChange = (value) => {
-    setClickClearFlag(false);
-    onChange(value);
+      onChange(value);
+      setClickClearFlag(false);
   };
 
   // Обработчик изменения сложности
   const handleRadioButtonChange = (value) => {
-    setClickClearFlag(false);
-    onSelectedRadioButton(value);
+      onSelectedRadioButton(value);
+      setClickClearFlag(false);
   };
 
   // Обработчик случайного выбора
