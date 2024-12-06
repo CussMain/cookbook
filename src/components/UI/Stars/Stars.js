@@ -1,12 +1,9 @@
 import React, { useEffect , useState , useContext }   from 'react';
-
 import startDark                                      from './img/star_dark.png';
 import starEmptyDark                                  from './img/star_empty_dark.png';
 import startLight                                     from './img/star.png';
 import starEmptyLight                                 from './img/star_empty.png';
-
 import { Context }                                    from '../../Context';
-
 import './Stars.css';
 
 const Stars = ({ difficulty , text}) => {

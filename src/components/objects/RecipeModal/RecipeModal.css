@@ -23,14 +23,22 @@
     border-right: 1px solid #ccc;
   }
 
-  .recipemodal-ui-component-main-info [type="tags"]  {
+  .recipemodal-ui-component-main-info [type='tags']  {
+    display: flex;
+    flex-direction: column;
     border-right: 1px solid #ccc;
     width: 50%;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
-  .recipemodal-ui-component-main-info [type="instructions"]  {
+  .recipemodal-ui-component-main-info [type='instructions'] {
+    display: flex;
+    flex-direction: column;
     width: 50%;
-  }
+    margin-left: 20px;
+    margin-right: 20px;
+  } 
 
   .recipemodal-ui-component-main-img {
     width: 40%;
@@ -43,4 +51,5 @@
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
   }

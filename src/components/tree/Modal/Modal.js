@@ -21,7 +21,7 @@ const Content = ({ isOpen, onClose, children }) => {
 };
 
 const Modal = () => {
-  const { name } = useContext(Context);
+  const { name , setName } = useContext(Context);
   const [ isModalOpen, setIsModalOpen] = useState(false);
   const [ cardNumber , setCardNumber ] = useState(0);
 
@@ -36,6 +36,7 @@ const Modal = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setName(0);
   };
   
   return (

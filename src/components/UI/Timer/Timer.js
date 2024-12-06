@@ -1,15 +1,12 @@
-import React, { useEffect , useState , useContext }   from 'react';
-
-import timerLight from './img/timer.png';
-import timerDark  from './img/timer_dark.png';
-
+import React, { useEffect , useState , useContext } from 'react';
+import timerLight                                   from './img/timer.png';
+import timerDark                                    from './img/timer_dark.png';
+import { Context }                                  from '../../Context';
 import './Timer.css';
-
-import { Context }                                    from '../../Context';
 
 const Timer = ({ name, cookTimeMinutes , metric }) => {
 
-  const [timer      , setTimer]      = useState(timerLight);
+  const [timer , setTimer]  = useState(timerLight);
   const { userTheme } = useContext(Context);
 
   useEffect(() => {
